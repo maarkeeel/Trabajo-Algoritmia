@@ -1,6 +1,8 @@
 #include <stdbool.h>
 
-typedef struct tipoElementoCola;
+typedef struct tipoElementoC{
+
+}tipoElementoCola;
 typedef struct celdaC{
 	tipoElementoCola elem;
 	struct celdaC* sig;
