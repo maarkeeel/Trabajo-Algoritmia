@@ -7,7 +7,7 @@
 
 int main()
 {
-  int n1, n2, indice;
+  int n1, n2, indice, distancia;
   FILE *StressLevelDataset;
 
   tipoElementoCola datos;
