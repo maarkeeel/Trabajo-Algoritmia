@@ -111,4 +111,20 @@ int main()
   distancia += pow(datos.extracurricular_activities - datoNuevo.extracurricular_activities, 2);
   distancia += pow(datos.bullying - datoNuevo.bullying, 2);
   distancia = sqrt(distancia);
+
+  int distanciaMinima, nuevaDistancia, estresMinimo;
+
+  desencolar(&cola, datos);
+  distanciaMinima =
+  estresMinimo = datos.stress_level;
+  while(!esNulaCola(cola) && distanciaMinima != 0)
+  {
+      datos = desencolar(*cola);
+      nuevaDistancia =
+      if (nuevaDistancia < distanciaMinima)
+      {
+          distanciaMinima = nuevaDistancia;
+          estresMinimo = datos.stress_level;
+      }
+  }
 }
