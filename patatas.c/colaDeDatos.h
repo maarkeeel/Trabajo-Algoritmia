@@ -42,3 +42,5 @@ void encolar(tipoCola*, tipoElementoCola);
 void desencolar(tipoCola*);
 
 tipoElementoCola frente(tipoCola);
+
+void Normalizar(*TipoElementoC);
