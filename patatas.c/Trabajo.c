@@ -11,8 +11,31 @@ int main()
   FILE *StressLevelDataset;
 
   tipoElementoCola datos;
+  tipoElementoCola datoNuevo;
   tipoCola cola;
   int* TablaDato;
+
+
+    datoNuevo.anxiety_level = 14;
+    datoNuevo.self_esteem = 20;
+    datoNuevo.mental_health_history = 0;
+    datoNuevo.depression = 11;
+    datoNuevo.headache = 2;
+    datoNuevo.blood_pressure = 1;
+    datoNuevo.sleep_quality = 2;
+    datoNuevo.breathing_problem = 4;
+    datoNuevo.noise_level = 2;
+    datoNuevo.living_conditions = 3;
+    datoNuevo.safety = 3;
+    datoNuevo.basic_needs = 2;
+    datoNuevo.academic_preformance = 3;
+    datoNuevo.study_load = 2;
+    datoNuevo.teacher_student_relationship = 3;
+    datoNuevo.future_career_concerns = 3;
+    datoNuevo.social_support = 2;
+    datoNuevo.peer_pressure = 3;
+    datoNuevo.extracurricular_activities = 3;
+    datoNuevo.bullying = 2;
 
   nuevaCola(&cola);
   
@@ -20,9 +43,9 @@ int main()
 
   while(!feof(f))
   {
-    TablaDato = (int*)malloc(sizeof(int * 20))
+    TablaDato = (int*)malloc(sizeof(int * 21))
 
-    for indice = 0; indice < 20; indice++)
+    for indice = 0; indice < 21; indice++)
     {
       fread(&n1, sizeof(int), 1, fichero);
       fread(&n2, sizeof(int), 1, fichero);
@@ -62,8 +85,11 @@ int main()
     *datos.peer_pressure = tabla[17];
     *datos.extracurricular_activities = tabla[18];
     *datos.bullying = tabla[19];
+    *datos.stress_level = tabla[20];
 
     encolar(&cola, datos);
   }
   
+  
+
 }
