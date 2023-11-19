@@ -65,7 +65,3 @@ int main()
     encolar(&cola, datos);
   }
 }
-  
-}
-
-
