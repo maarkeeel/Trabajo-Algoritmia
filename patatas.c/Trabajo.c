@@ -63,6 +63,8 @@ int main()
     *datos.peer_pressure = tabla[17];
     *datos.extracurricular_activities = tabla[18];
     *datos.bullying = tabla[19];
+
+    encolar(&cola, datos);
   }
 }
   
