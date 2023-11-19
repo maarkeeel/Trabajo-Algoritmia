@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <math.h>
 
 typedef struct tipoElementoC{
 	int anxiety_level;
