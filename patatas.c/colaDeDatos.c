@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#include "colaEnteros.h"
+#include "colaDeDatos.h"
 
 
 void nuevaCola(tipoCola* c){
