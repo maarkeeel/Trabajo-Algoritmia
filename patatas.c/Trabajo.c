@@ -8,12 +8,12 @@
 int main()
 {
   int n1, n2, indice, distancia, distanciaMinima, nuevaDistancia, estresMinimo;
-  FILE *StressLevelDataset;
+  FILE *fichero;
 
   tipoElementoCola datos;
   tipoElementoCola datoNuevo;
   tipoCola cola;
-  int* TablaDato;
+  int* tabla;
 
 
   datoNuevo.anxiety_level = 14;
@@ -28,7 +28,7 @@ int main()
   datoNuevo.living_conditions = 3;
   datoNuevo.safety = 3;
   datoNuevo.basic_needs = 2;
-  datoNuevo.academic_preformance = 3;
+  datoNuevo.academic_performance = 3;
   datoNuevo.study_load = 2;
   datoNuevo.teacher_student_relationship = 3;
   datoNuevo.future_career_concerns = 3;
@@ -39,13 +39,13 @@ int main()
 
   nuevaCola(&cola);
   
-  fichero = fopen(StressLevelDataset, "r");
+  fichero = fopen("StressLevelDataset.csv", "r");
 
-  while(!feof(f))
+  while(!feof(fichero))
   {
-    TablaDato = (int*)malloc(sizeof(int * 21))
+    tabla = (int*)malloc(sizeof(int) * 21);
 
-    for indice = 0; indice < 21; indice++)
+    for (indice = 0; indice < 21; indice++)
     {
       fread(&n1, sizeof(int), 1, fichero);
       fread(&n2, sizeof(int), 1, fichero);
@@ -57,7 +57,7 @@ int main()
 
         tabla[indice] = n1;
 
-        fread(&n2, sizeof(int),1,f);
+        fread(&n2, sizeof(int), 1, fichero);
       }
       else
       {
@@ -77,7 +77,7 @@ int main()
     datos.living_conditions = tabla[9];
     datos.safety = tabla[10];
     datos.basic_needs = tabla[11];
-    datos.academic_preformance = tabla[12];
+    datos.academic_performance = tabla[12];
     datos.study_load = tabla[13];
     datos.teacher_student_relationship = tabla[14];
     datos.future_career_concerns = tabla[15];
@@ -87,6 +87,7 @@ int main()
     datos.bullying = tabla[19];
     datos.stress_level = tabla[20];
 
+    Normalizar(&datos);
     encolar(&cola, datos);
   }
   
@@ -113,15 +114,16 @@ int main()
   distancia = sqrt(distancia);
 
 
-
-  desencolar(&cola, datos);
+  datos = frente(cola);
+  desencolar(&cola);
   distanciaMinima = distancia;
   estresMinimo = datos.stress_level;
   while(!esNulaCola(cola) && distanciaMinima != 0)
   {
-    datos = desencolar(*cola);
+    datos = frente(cola);
+    desencolar(&cola);
 
-    distancia = 0
+    distancia = 0;
     distancia += pow(datos.anxiety_level - datoNuevo.anxiety_level, 2);
     distancia += pow(datos.self_esteem - datoNuevo.self_esteem, 2);
     distancia += pow(datos.mental_health_history - datoNuevo.mental_health_history, 2);
@@ -152,4 +154,5 @@ int main()
   }
   datoNuevo.stress_level = estresMinimo;
   printf("El estres correspondiente a los datos introducidos es : %d", estresMinimo);
+  printf("El estres correspondiente a los datos introducidos es : %d", distancia);
 }
