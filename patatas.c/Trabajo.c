@@ -6,30 +6,65 @@
 
 void Normalizar(*TipoElementoC)
 
-int main(){
-  int multiplicador, guarda, numero;
+int main()
+{
+  int n1, n2, numero, indice;
   FILE *StressLevelDataset;
 
   tipoElementoCola elem;
   tipoCola cola;
+  int* TablaDato;
 
   nuevaCola(&cola);
   
+  fichero = fopen(StressLevelDataset, "r");
+
   while(!feof(f))
   {
-    fread(&multiplicador,sizeof(int),1,f);
-    fread(&guarda,sizeof(int),1,f);
-    if (guarda != ';')
+    TablaDato = (int*)malloc(sizeof(int * 20))
+
+    for indice = 0; indice < 20; indice++)
     {
-      multiplicador = multiplicador*10;
-      multiplicador += guarda;
-      fread(&guarda, sizeof(int),1,f);
+      fread(&n1, sizeof(int), 1, fichero);
+      fread(&n2, sizeof(int), 1, fichero);
+
+      if (n2 != ';')
+      {
+        n1 = n1*10;
+        n1 += n2;
+
+        tabla[indice] = n1;
+
+        fread(&n2, sizeof(int),1,f);
+      }
+      else
+      {
+        tabla[indice] = n1;
+      }
     }
+
+    *datos.anxiety_level = 
+    *datos.self_esteem = 
+    *datos.mental_health_history = 
+    *datos.depression = 
+    *datos.headache = 
+    *datos.blood_pressure = 
+    *datos.sleep_quality = 
+    *datos.breathing_problem = 
+    *datos.noise_level = 
+    *datos.living_conditions = 
+    *datos.safety = 
+    *datos.basic_needs = 
+    *datos.academic_preformance = 
+    *datos.study_load = 
+    *datos.teacher_student_relationship = 
+    *datos.future_career_concerns = 
+    *datos.social_support = 
+    *datos.peer_pressure = 
+    *datos.extracurricular_activities = 
+    *datos.bullying = 
   }
-   			if(n>0){
-   				printf("%c", x);
-   			}
-   }
+}
   
 }
 
