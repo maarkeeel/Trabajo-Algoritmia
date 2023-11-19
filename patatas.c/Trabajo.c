@@ -11,7 +11,7 @@ int main()
   int n1, n2, indice;
   FILE *StressLevelDataset;
 
-  tipoElementoCola elem;
+  tipoElementoCola datos;
   tipoCola cola;
   int* TablaDato;
 
