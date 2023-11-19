@@ -43,7 +43,7 @@ tipoElementoCola frente(tipoCola c){
 	return (elem);
 }
 
-void Normalizar(*datos)
+void Normalizar(tipoElementoCola *datos)
 {
     *datos.anxiety_level = *datos.anxiety_level / 21;
     *datos.self_esteem = *datos.self_esteem / 30;
