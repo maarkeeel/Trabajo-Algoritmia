@@ -7,7 +7,7 @@
 
 int main()
 {
-  int n1, n2, indice, distancia;
+  int n1, n2, indice, distancia, distanciaMinima, nuevaDistancia, estresMinimo;
   FILE *StressLevelDataset;
 
   tipoElementoCola datos;
@@ -112,7 +112,7 @@ int main()
   distancia += pow(datos.bullying - datoNuevo.bullying, 2);
   distancia = sqrt(distancia);
 
-  int distanciaMinima, nuevaDistancia, estresMinimo;
+
 
   desencolar(&cola, datos);
   distanciaMinima = distancia;
