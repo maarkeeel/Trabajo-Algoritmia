@@ -151,4 +151,5 @@ int main()
     }
   }
   datoNuevo.stress_level = estresMinimo;
+  printf("El estres correspondiente a los datos introducidos es : %d", estresMinimo);
 }
