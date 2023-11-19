@@ -115,16 +115,40 @@ int main()
   int distanciaMinima, nuevaDistancia, estresMinimo;
 
   desencolar(&cola, datos);
-  distanciaMinima =
+  distanciaMinima = distancia;
   estresMinimo = datos.stress_level;
   while(!esNulaCola(cola) && distanciaMinima != 0)
   {
-      datos = desencolar(*cola);
-      nuevaDistancia =
-      if (nuevaDistancia < distanciaMinima)
-      {
-          distanciaMinima = nuevaDistancia;
-          estresMinimo = datos.stress_level;
-      }
+    datos = desencolar(*cola);
+
+    distancia = 0
+    distancia += pow(datos.anxiety_level - datoNuevo.anxiety_level, 2);
+    distancia += pow(datos.self_esteem - datoNuevo.self_esteem, 2);
+    distancia += pow(datos.mental_health_history - datoNuevo.mental_health_history, 2);
+    distancia += pow(datos.depression - datoNuevo.depression, 2);
+    distancia += pow(datos.headache - datoNuevo.headache, 2);
+    distancia += pow(datos.blood_pressure - datoNuevo.blood_pressure, 2);
+    distancia += pow(datos.sleep_quality - datoNuevo.sleep_quality, 2);
+    distancia += pow(datos.breathing_problem - datoNuevo.breathing_problem, 2);
+    distancia += pow(datos.noise_level - datoNuevo.noise_level, 2);
+    distancia += pow(datos.living_conditions - datoNuevo.living_conditions, 2);
+    distancia += pow(datos.safety - datoNuevo.safety, 2);
+    distancia += pow(datos.basic_needs - datoNuevo.basic_needs, 2);
+    distancia += pow(datos.academic_performance - datoNuevo.academic_performance, 2);
+    distancia += pow(datos.study_load - datoNuevo.study_load, 2);
+    distancia += pow(datos.teacher_student_relationship - datoNuevo.teacher_student_relationship, 2);
+    distancia += pow(datos.future_career_concerns - datoNuevo.future_career_concerns, 2);
+    distancia += pow(datos.social_support - datoNuevo.social_support, 2);
+    distancia += pow(datos.peer_pressure - datoNuevo.peer_pressure, 2);
+    distancia += pow(datos.extracurricular_activities - datoNuevo.extracurricular_activities, 2);
+    distancia += pow(datos.bullying - datoNuevo.bullying, 2);
+    distancia = sqrt(distancia);
+    nuevaDistancia = distancia;
+    if (nuevaDistancia < distanciaMinima)
+    {          
+      distanciaMinima = nuevaDistancia;
+      estresMinimo = datos.stress_level;
+    }
   }
+  datoNuevo.stress_level = estresMinimo;
 }
