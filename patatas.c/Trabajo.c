@@ -110,4 +110,5 @@ int main()
   distancia += pow(datos->peer_pressure - datoNuevo->peer_pressure, 2);
   distancia += pow(datos->extracurricular_activities - datoNuevo->extracurricular_activities, 2);
   distancia += pow(datos->bullying - datoNuevo->bullying, 2);
+  distancia = sqrt(distancia);
 }
