@@ -9,6 +9,11 @@ void Normalizar(*TipoElementoC)
 int main(){
   int multiplicador, guarda, numero;
   FILE *StressLevelDataset;
+
+  tipoElementoCola elem;
+  tipoCola cola;
+
+  nuevaCola(&cola);
   
   while(!feof(f))
   {
