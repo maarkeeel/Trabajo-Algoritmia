@@ -9,6 +9,7 @@ int main()
 {
   int n1, n2, indice, distancia, distanciaMinima, nuevaDistancia, estresMinimo;
   FILE *fichero;
+  char c1, c2;
 
   tipoElementoCola datos;
   tipoElementoCola datoNuevo;
@@ -47,20 +48,23 @@ int main()
 
     for (indice = 0; indice < 21; indice++)
     {
-      fread(&n1, sizeof(int), 1, fichero);
-      fread(&n2, sizeof(int), 1, fichero);
+      c1 = fgetc(fichero);
+      c2 = fgetc(fichero);
 
-      if (n2 != ';')
+      if (c2 != ';')
       {
+        n1 = c1 - '0';
+        n2 = c2 - '0';
         n1 = n1*10;
         n1 += n2;
 
         tabla[indice] = n1;
 
-        fread(&n2, sizeof(int), 1, fichero);
+        fgetc(&n2, sizeof(int), 1, fichero);
       }
       else
       {
+        n1 = c1 - '0';
         tabla[indice] = n1;
       }
     }
@@ -90,7 +94,9 @@ int main()
     Normalizar(&datos);
     encolar(&cola, datos);
   }
-  
+
+  fclose(fichero);
+  //se podria poner como función
   distancia += pow(datos.anxiety_level - datoNuevo.anxiety_level, 2);
   distancia += pow(datos.self_esteem - datoNuevo.self_esteem, 2);
   distancia += pow(datos.mental_health_history - datoNuevo.mental_health_history, 2);
