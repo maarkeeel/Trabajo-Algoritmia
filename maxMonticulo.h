@@ -1,8 +1,7 @@
 #include <stdbool.h>
 
 typedef struct tipoElementoMaxMonticulo{
-	int distancia;
-	int stress_level;
+	int valor;
 }tipoElementoMaxMonticulo;
 
 typedef struct tipoMaxMonticulo{
@@ -19,13 +18,11 @@ bool estaLleno(tipoMaxMonticulo);
 
 tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo);
 
-void insertarMaxMonticulo(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
+void insertarMaxMonticulo(tipoMaxMonticulo*, int);
 
-void borrarraiz(tipoMaxMonticulo*);
+void eliminarElemento(tipoMaxMonticulo*, int);
 
 void mostrarAnchura(tipoMaxMonticulo);
-
-void subirMayor(tipoElementoMaxMonticulo*, int);
 
 
 
