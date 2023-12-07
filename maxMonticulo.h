@@ -25,5 +25,8 @@ void borrarraiz(tipoMaxMonticulo*);
 
 void mostrarAnchura(tipoMaxMonticulo);
 
+void subirMayor(tipoElementoMaxMonticulo*, int);
+
+
 
 

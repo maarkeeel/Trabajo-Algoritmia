@@ -19,6 +19,11 @@ void nuevoMaxMonticulo(tipoMaxMonticulo *m, int nelem){
 	m->pos = -1;
 	m->numEl = nelem;
 	m->array = ((tipoElementoMaxMonticulo*) malloc (nelem * sizeof(tipoElementoMaxMonticulo)));
+	for (int i = 0; i < nelem; i++)//lleno el array de distancias 0 y stress -1
+	{
+		m->array[i]->distancia = -1;
+		m->array[i]->stress_level = -1;
+	}
 }
 
 bool esVacio(tipoMaxMonticulo m){
@@ -33,95 +38,69 @@ tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo m){
 	return (m.array[0]);
 }
 
-void insertarMaxMonticulo(tipoMaxMonticulo* m, int valor){
+void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo* elemento){
 	
-	int posaux, repeticion, cambio;
+	int pospadre, guardapos, cambiod, cambios;
+	tipoElementoMaxMonticulo *nuevoElem;
 	
-	if (m->pos == -1){ //Insertar primer elemento
+	if (m->pos == -1)
+	{ //Insertar primer elemento
 		(m->pos) = (m->pos) + 1;
-		m->array[m->pos].valor = valor;
-		m->array[m->pos].repeticiones = 1;
+		m->array[m->pos]->distancia = elemento->distancia;
+		m->array[m->pos]->stress_level = elemento->stress_level;
 	}
-	else{
-		posaux = m->pos;
-		repeticion = 0;
-		for (posaux; 0; posaux--){//Comprobar si el valor esta en el monticulo se repite.
-			if	(valor == (m->array[posaux].valor)){
-				m->array[posaux].repeticiones = m->array[posaux].repeticiones +1;
-				repeticion = 1;
+	else if (m->pos == 0)//caso trivial, m->pos = 0 es la cima del monticulo, si ha llegado hasta aquí tiene que tener la distancia mayor
+	{
+		m->array[m->pos]->distancia = elemento->distancia;
+		m->array[m->pos]->stress_level = elemento->stress_level;
+	}
+	else//m->pos >= 0 aquí, y ya hemos metido el primer elemento
+	{
+		if (m->pos == m->numEl) //comprobamos si el siguiente valor es el del numero de elementos que nos han pedido(recordemos que la tabla va de [0, N-1]) por lo tanto estaríamos fuera de la tabla
+		{
+			printf("ERROR No se pueden introducir mas elementos\n");
+		}
+		else if (m->pos + 1 != m->numEl && m->pos % 2 == 0)//m->pos < m->numEl && hijo Derecho
+		{
+			pospadre = (m->pos / 2) - 1;
+			if (elemento.distancia > (m->array[pospadre].distancia))//si el elemento que introducimos tiene distancia mayor que el elemento en la posición padre
+			{
+				guardapos = m->pos;
+				m->pos = pospadre;
+				insertarMaxMonticulo(&m, elemento);//llamada pero ahora m->pos es la posición del padre
+				m->pos = guardapos;
+			}
+			else
+			{
+				m->array[m->pos].distancia = elemento.distancia;
+				m->array[m->pos].stress_level = elemento.stress_level;
 			}
 		}
-		if (repeticion = 0){
-			m->pos = m->pos + 1;
-			if (m->pos = m->numEl){
-				printf("ERROR No se pueden introducir mas elementos\n");
+		else if (m->pos + 1 != m->numEl && m->pos % 2 != 0)//m->pos < m->numEl && hijo Izquierdo
+		{
+			pospadre = (m->pos - 1) / 2;
+			if (elemento.distancia > (m->array[pospadre].distancia))//si el elemento que introducimos tiene distancia mayor que el elemento en la posición padre
+			{
+				guardapos = m->pos;
+				m->pos = pospadre;
+				insertarMaxMonticulo(&m, elemento);//llamada pero ahora m->pos es la posición del padre
+				m->pos = guardapos;
 			}
-			else{
-				posaux = (m->pos / 2);
-				for (posaux ; 0 ; (posaux / 2)){//Encontar la posicion hasta la que tiene que subir
-					if (valor < (m->array[posaux].valor)){
-						m->array[m->pos].valor = valor;
-						m->array[m->pos].repeticiones = 0;
-						posaux = 0;
-					}
-					else{
-						cambio = m->array[m->pos].valor;
-						m->array[m->pos].valor = m->array[posaux].valor;
-						m->array[posaux].valor = cambio;
-					}
-				}
+			else
+			{
+				m->array[m->pos].distancia = elemento.distancia;
+				m->array[m->pos].stress_level = elemento.stress_level;
 			}
 		}
-	}	
+	}
+	m->pos = m->pos + 1;
 }
 
 
-void eliminarElemento(tipoMaxMonticulo *m, int valor){
-	
-	int posaux, esta;
-	esta = 0;
-	
-	posaux = m->pos;
-	for (posaux; 0; posaux--){
-		if	(valor == (m->array[posaux].valor)){//Comprobar si el valor esta en el monticulo.
-			esta = 1;
-			if (m->array[posaux].repeticiones != 0){//Caso valor repetido
-				m->array[posaux].repeticiones = m->array[posaux].repeticiones -1;
-			}
-			else//Valor no repetido
-			{
-				m->pos = (m->pos) - 1;
-				if (((2*posaux)+1) > m->pos){//No tiene hijos
-					while(posaux != m->pos){
-						m->array[posaux].valor = m->array[posaux + 1].valor;
-						m->array[posaux].repeticiones = m->array[posaux + 1].repeticiones;
-						posaux = posaux + 1;
-					}
-				}
-				else if (((2*posaux)+1) == m->pos){//Tiene solo hijo derecho.
-					m->array[posaux].valor = m->array[m->pos].valor; //pos es el ultimo valor que es el hijo derecho del valor a eliminar
-					m->array[posaux].repeticiones = m->array[m->pos].repeticiones;
-				}
-				else if (((2*posaux)+1) < m->pos){//Tiene hijo izquierdo y derecho
-					if (m->array[((2*posaux)+1)].valor > m->array[((2*posaux)+1)].valor)
-					{
-						m->array[posaux].valor = m->array[((2*posaux)+1)].valor;
-					}
-					else{
-						m->array[posaux].valor = m->array[((2*posaux)+2)].valor;
-					}
-					while(posaux != m->pos){
-						m->array[posaux].valor = m->array[posaux + 1].valor;
-						m->array[posaux].repeticiones = m->array[posaux + 1].repeticiones;
-						posaux = posaux + 1;
-					}
-				}
-			}
-		}
-	}
-	if (esta = 0){
-		printf("El valor introducido no esta en el monticulo\n");
-	}
+void borrarraiz(tipoMaxMonticulo* m){
+{
+	subirMayor(m, 0);
+	m->pos = m->pos - 1;
 }
 
 void mostrarAnchura(tipoMaxMonticulo m){
@@ -130,8 +109,32 @@ void mostrarAnchura(tipoMaxMonticulo m){
 	for (posaux; m.pos; posaux++){
 		for (m.array[posaux].repeticiones; 0; (m.array[posaux].repeticiones) --)
 		{
-			printf("%d ", m.array[posaux].valor);
+			printf("%d ", m.array[posaux].distancia);
 		}
+	}
+}
+
+void subirMayor(tipoElementoMaxMonticulo* m, int pospadre)
+{
+	if ((pospadre * 2) + 1 >= m->numEl)
+	{
+		if(m->array[(pospadre * 2) + 1]->distancia >= m->array[(pospadre * 2) + 2]->distancia)
+		{
+			m->array[pospadre]->distancia = m->array[(pospadre * 2) + 1]->distancia;
+			m->array[pospadre]->stress_level = m->array[(pospadre * 2) + 1]->stress_level;
+			subirMayor(m, (pospadre * 2) + 1);
+		}
+		else if(m->array[(pospadre * 2) + 2]->distancia > m->array[(pospadre * 2) + 1]->distancia)
+		{
+			m->array[pospadre]->distancia = m->array[(pospadre * 2) + 2]->distancia;
+			m->array[pospadre]->stress_level = m->array[(pospadre * 2) + 2]->stress_level;
+			subirMayor(m, (pospadre * 2) + 2);
+		}
+	}
+	else
+	{
+		m->array[pospadre]->distancia = -1;
+		m->array[pospadre]->stress_level = -1;
 	}
 }
 
