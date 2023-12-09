@@ -19,9 +19,9 @@ bool estaLleno(tipoMaxMonticulo);
 
 tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo);
 
-void insertarMaxMonticulo(tipoMaxMonticulo*, int);
+void insertarMaxMonticulo(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
 
-void eliminarElemento(tipoMaxMonticulo*, int);
+void eliminarElemento(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
 
 void mostrarAnchura(tipoMaxMonticulo);
 
