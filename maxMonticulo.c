@@ -26,7 +26,7 @@ tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo m){
 void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo elem){
 	
 	int posaux;
-	tipoElementoMaxMonticulo elem;
+	tipoElementoMaxMonticulo cambio;
 	
 	if (m->pos == -1){ //Insertar primer elemento
 		(m->pos) = (m->pos) + 1;
@@ -76,14 +76,14 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 	{
 		
 		m->array[0].distancia = elem.distancia;
-		m->array[0].stressLevel = elem.distancia.stressLevel;
+		m->array[0].stressLevel = elem.stressLevel;
 		
 		posaux = 0;
 		
-		while ((2*posaux+1) <= m->numEl))
+		while ((2*posaux+1) <= m->numEl)
 		{
 			
-			if ((2*posaux+2) > m->numEl))
+			if ((2*posaux+2) > m->numEl)
 			{
 				cambio.distancia = m->array[2*posaux+1].distancia;
 				cambio.stressLevel = m->array[2*posaux+1].stressLevel;
@@ -126,7 +126,7 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 					}
 				}
 				
-				else if (((m->array[posaux].distancia > m->array[2*posaux+1].distancia) && (m->array[posaux].distancia <= m->array[2*posaux+2].distancia))
+				else if ((m->array[posaux].distancia > m->array[2*posaux+1].distancia) && (m->array[posaux].distancia <= m->array[2*posaux+2].distancia))
 				{
 					cambio.distancia = m->array[2*posaux+1].distancia;
 					cambio.stressLevel = m->array[2*posaux+1].stressLevel;
@@ -139,7 +139,7 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 					posaux = 2*posaux+1;
 				}
 				
-				else if (((m->array[posaux].distancia <= m->array[2*posaux+1].distancia) && (m->array[posaux].distancia > m->array[2*posaux+2].distancia))
+				else if ((m->array[posaux].distancia <= m->array[2*posaux+1].distancia) && (m->array[posaux].distancia > m->array[2*posaux+2].distancia))
 				{
 					cambio.distancia = m->array[2*posaux+2].distancia;
 					cambio.stressLevel = m->array[2*posaux+2].stressLevel;
@@ -160,17 +160,6 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 	}
 }
 
-
-void mostrarAnchura(tipoMaxMonticulo m){
-	int posaux;
-	posaux = 0;
-	for (posaux; m.pos; posaux++){
-		for (m.array[posaux].repeticiones; 0; (m.array[posaux].repeticiones) --)
-		{
-			printf("%d ", m.array[posaux].valor);
-		}
-	}
-}
 
 
 	
