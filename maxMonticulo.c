@@ -32,6 +32,7 @@ void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo elem){
 		(m->pos) = (m->pos) + 1;
 		m->array[m->pos].distancia = elem.distancia;
 		m->array[m->pos].stressLevel = elem.stressLevel;
+		
 	}
 	else{
 		if (m->pos == m->numEl){
