@@ -1,7 +1,8 @@
 #include <stdbool.h>
 
 typedef struct tipoElementoMaxMonticulo{
-	int valor;
+	int stressLevel;
+	int distancia;
 }tipoElementoMaxMonticulo;
 
 typedef struct tipoMaxMonticulo{

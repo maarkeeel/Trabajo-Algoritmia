@@ -4,16 +4,6 @@
 
 #include "maxMonticulo.h"
 
-/*typedef struct tipoElementoMaxMonticulo{
-	int valor;
-	int repeticiones;
-}tipoElementoMaxMonticulo;
-
-typedef struct tipoMaxMonticulo{
-	tipoElementoMaxMonticulo* array;
-	int pos;
-	int numEl;
-}tipoMaxMonticulo;*/
 
 void nuevoMaxMonticulo(tipoMaxMonticulo *m, int nelem){
 	m->pos = -1;
@@ -33,29 +23,36 @@ tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo m){
 	return (m.array[0]);
 }
 
-void insertarMaxMonticulo(tipoMaxMonticulo* m, int valor){
+void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo elem){
 	
-	int posaux, cambio;
+	int posaux;
+	tipoElementoMaxMonticulo elem;
 	
 	if (m->pos == -1){ //Insertar primer elemento
 		(m->pos) = (m->pos) + 1;
-		m->array[m->pos].valor = valor;
+		m->array[m->pos].distancia = elem.distancia;
+		m->array[m->pos].stressLevel = elem.stressLevel;
 	}
 	else{
-		if (m->pos = m->numEl){
+		if (m->pos == m->numEl){
 			printf("ERROR No se pueden introducir mas elementos\n");
 		}
 		else{
-			posaux = (m->(pos-1) / 2);
-			for (posaux ; 0 ; ((posaux-1) / 2)){//Encontar la posicion hasta la que tiene que subir
-				if (valor < (m->array[posaux].valor)){
-					m->array[m->pos].valor = valor;
-					posaux = 0;
+			posaux = (m->pos);
+			for (posaux ; (-1) ; ((posaux-1) / 2)){//Encontar la posicion hasta la que tiene que subir
+				
+				if (m->array[posaux].distancia <= (m->array[(posaux-1) / 2].distancia)){
+					posaux = -1;
 				}
 				else{
-					cambio = m->array[m->pos].valor;
-					m->array[m->pos].valor = m->array[posaux].valor;
-					m->array[posaux].valor = cambio;
+					cambio.distancia = m->array[2*posaux+1].distancia;
+					cambio.stressLevel = m->array[2*posaux+1].stressLevel;
+						
+					m->array[2*posaux+1].distancia = m->array[posaux].distancia;
+					m->array[2*posaux+1].stressLevel = m->array[posaux].stressLevel;
+						
+					m->array[posaux].distancia = cambio.distancia;
+					m->array[posaux].stressLevel = cambio.stressLevel;
 				}
 			}
 		}
@@ -63,45 +60,105 @@ void insertarMaxMonticulo(tipoMaxMonticulo* m, int valor){
 }
 
 
-void eliminarElemento(tipoMaxMonticulo *m, int valor){
+void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
+	/*La funcion esta compara la distancia del elemento nuevo con la distancia de la raiz y si es menor cambia la raiz por el nuevo elemento
+	 * hay que cambiar distancia y stressLevel. Luego compara con sus dos hijo aver si tiene que bajar o no y si es asi compara los hijos 
+	 * para ver por cual se tiene que sustituir. Si tiene solo hijo derecho se compara con el. Por como esta hecho no es posible que tenga 
+	 * solo hijo izquierdo asique no hay que meter esa alternativa. Realiza esto hasta que la distancia del elemento sea mayor que 
+	 * la de sus o cuando llega a ser una hoja el elemento que si introduce.
+	 * */
 	
-	int posaux, esta;
-	esta = 0;
+	int posaux;
+	tipoElementoMaxMonticulo cambio;
 	
-	posaux = m->pos;
-	for (posaux; 0; posaux--){
-		if	(valor == (m->array[posaux].valor)){//Comprobar si el valor esta en el monticulo.
+	if (m->array[0].distancia > elem.distancia)
+	{
+		
+		m->array[0].distancia = elem.distancia;
+		m->array[0].stressLevel = elem.distancia.stressLevel;
+		
+		posaux = 0;
+		
+		while ((2*posaux+1) <= m->numEl))
+		{
 			
-			m->pos = (m->pos) - 1;
-			if (((2*posaux)+1) > m->pos){//No tiene hijos
-				while(posaux != m->pos){
-					m->array[posaux].valor = m->array[posaux + 1].valor;
-					posaux = posaux + 1;
-				}
+			if ((2*posaux+2) > m->numEl))
+			{
+				cambio.distancia = m->array[2*posaux+1].distancia;
+				cambio.stressLevel = m->array[2*posaux+1].stressLevel;
+						
+				m->array[2*posaux+1].distancia = m->array[posaux].distancia;
+				m->array[2*posaux+1].stressLevel = m->array[posaux].stressLevel;
+						
+				m->array[posaux].distancia = cambio.distancia;
+				m->array[posaux].stressLevel = cambio.stressLevel;
+				posaux = 2*posaux+1;
 			}
-			else if (((2*posaux)+1) == m->pos){//Tiene solo hijo derecho.
-				m->array[posaux].valor = m->array[m->pos].valor; //pos es el ultimo valor que es el hijo derecho del valor a eliminar
-			}
-			else if (((2*posaux)+1) < m->pos){//Tiene hijo izquierdo y derecho
-				if (m->array[((2*posaux)+1)].valor > m->array[((2*posaux)+1)].valor)
+			
+			else
+			{
+				if ((m->array[posaux].distancia > m->array[2*posaux+1].distancia) && (m->array[posaux].distancia > m->array[2*posaux+2].distancia))
 				{
-					m->array[posaux].valor = m->array[((2*posaux)+1)].valor;
+					if (m->array[2*posaux+1].distancia > m->array[2*posaux+2].distancia)
+					{
+						cambio.distancia = m->array[2*posaux+1].distancia;
+						cambio.stressLevel = m->array[2*posaux+1].stressLevel;
+						
+						m->array[2*posaux+1].distancia = m->array[posaux].distancia;
+						m->array[2*posaux+1].stressLevel = m->array[posaux].stressLevel;
+						
+						m->array[posaux].distancia = cambio.distancia;
+						m->array[posaux].stressLevel = cambio.stressLevel;
+						posaux = 2*posaux+1;
+					} 
+					else
+					{
+						cambio.distancia = m->array[2*posaux+2].distancia;
+						cambio.stressLevel = m->array[2*posaux+2].stressLevel;
+						
+						m->array[2*posaux+2].distancia = m->array[posaux].distancia;
+						m->array[2*posaux+2].stressLevel = m->array[posaux].stressLevel;
+						
+						m->array[posaux].distancia = cambio.distancia;
+						m->array[posaux].stressLevel = cambio.stressLevel;
+						posaux = 2*posaux+2;
+					}
 				}
-				else{
-					m->array[posaux].valor = m->array[((2*posaux)+2)].valor;
+				
+				else if (((m->array[posaux].distancia > m->array[2*posaux+1].distancia) && (m->array[posaux].distancia <= m->array[2*posaux+2].distancia))
+				{
+					cambio.distancia = m->array[2*posaux+1].distancia;
+					cambio.stressLevel = m->array[2*posaux+1].stressLevel;
+						
+					m->array[2*posaux+1].distancia = m->array[posaux].distancia;
+					m->array[2*posaux+1].stressLevel = m->array[posaux].stressLevel;
+						
+					m->array[posaux].distancia = cambio.distancia;
+					m->array[posaux].stressLevel = cambio.stressLevel;
+					posaux = 2*posaux+1;
 				}
-				while(posaux != m->pos){
-					m->array[posaux].valor = m->array[posaux + 1].valor;
-					posaux = posaux + 1;
+				
+				else if (((m->array[posaux].distancia <= m->array[2*posaux+1].distancia) && (m->array[posaux].distancia > m->array[2*posaux+2].distancia))
+				{
+					cambio.distancia = m->array[2*posaux+2].distancia;
+					cambio.stressLevel = m->array[2*posaux+2].stressLevel;
+						
+					m->array[2*posaux+2].distancia = m->array[posaux].distancia;
+					m->array[2*posaux+2].stressLevel = m->array[posaux].stressLevel;
+						
+					m->array[posaux].distancia = cambio.distancia;
+					m->array[posaux].stressLevel = cambio.stressLevel;
+					posaux = 2*posaux+2;
+				}
+				else
+				{
+					posaux = m-> numEl;
 				}
 			}
 		}
 	}
 }
-	if (esta = 0){
-		printf("El valor introducido no esta en el monticulo\n");
-	}
-}
+
 
 void mostrarAnchura(tipoMaxMonticulo m){
 	int posaux;
