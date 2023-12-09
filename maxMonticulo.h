@@ -21,9 +21,7 @@ tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo);
 
 void insertarMaxMonticulo(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
 
-void eliminarElemento(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
-
-void mostrarAnchura(tipoMaxMonticulo);
+void cambiarRaiz(tipoMaxMonticulo*, tipoElementoMaxMonticulo);
 
 
 
