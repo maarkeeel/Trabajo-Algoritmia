@@ -7,15 +7,20 @@
 
 int main()
 {
-	int n1, n2, indice, estresMinimo;
-	double distancia, distanciaMinima, nuevaDistancia;
+	int n1, n2, indice, estresMinimo, numElem, cont0, cont1, cont2, contDist0, contDist1, contDist2;
+	double distancia, distanciaNueva;
 	FILE *fichero;
 	char c1, c2;
 
 	tipoElementoCola datos;
 	tipoElementoCola datoNuevo;
 	tipoCola cola;
+
 	int* tabla;
+
+	tipoElementoMaxMonticulo elem;
+	tipoElementoMaxMonticulo raiz;
+	tipoMaxMonticulo maxMon;
 
 
 	datoNuevo.anxiety_level = 16;
@@ -41,8 +46,12 @@ int main()
 	
 	Normalizar(&datoNuevo);//Se nos habia olvidado normalizar el dato nuevo
 
-
 	nuevaCola(&cola);
+
+	printf("\nIntroduce el numero de elementos que quieres comprobar (N): ");
+	scanf("%d", &numElem);
+
+	nuevoMaxMonticulo(&maxMon, numElem);
   
 	fichero = fopen("StressLevelDataset.csv", "r");
 
@@ -106,30 +115,154 @@ int main()
     free(tabla);
     fclose(fichero);
 
-	datos = copiarDatos(cola);//aqui como bien dice la funcion se inicializa la variable datos con el frente de la cola que es el primer dato introducido
-	desencolar(&cola);
-	
-	distanciaMinima = CalcularDistancia(datos, datoNuevo); //Funcion de calcular la distancia hecha 
-	
-	estresMinimo = datos.stress_level;
-	
-	while(!esNulaCola(cola) && distanciaMinima != 0)
-	{
+	while(!(estaLleno(maxMon)){
+
 		datos = copiarDatos(cola);
 		desencolar(&cola);
 
-		
-		nuevaDistancia = CalcularDistancia(datos, datoNuevo);
-		
-		if (nuevaDistancia < distanciaMinima)
-		{          
-		  distanciaMinima = nuevaDistancia;
-		  estresMinimo = datos.stress_level;
+		elem.distancia = CalcularDistancia(datos, datoNuevo);
+		elem.stress_level = datos.stress_level;
+
+		insertar(&maxMon, elem);
+	}
+
+	while(!esNulaCola(cola)){
+
+		datos = copiarDatos(cola);
+		desencolar(&cola);
+
+		raiz = devolverRaiz(maxMon);
+
+		distanciaNueva = CalcularDistancia(datos, datoNuevo);
+
+		if(raiz.distancia > distanciaNueva){
+
+			borrarraiz(&maxMon);
+			elem.distancia = distanciaNueva;
+			elem.stress_level = datos.stress_level;
+
+			insertar(&maxMon, elem);
 		}
-	  }
-	datoNuevo.stress_level = estresMinimo;
+
+		else{
+			continue
+		}
+	}
+
+	while(!(estaLleno(maxMon)){
+
+		raiz = devolverRaiz(maxMon);
+		borrarraiz(&maxMon);
+
+		if(raiz.stress_level == 0){
+			cont0 += 1;
+			contDist0 += raiz.distancia;
+		}
+		else if(raiz.stress_level == 1){
+			cont1 += 1;
+			contDist1 += raiz.distancia;
+		}
+		else if (raiz.stress_level == 2{
+			cont2 += 1;
+			contDist2 += raiz.distancia;
+		}
+		else{
+			printf("Aimer gay");
+		}
+	}
+
+	if (cont0 >= cont1 && cont0 >= cont2){
+		if (cont0 == cont1 && cont1 != cont2){
+			if(contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+			else{
+				datoNuevo.stress_level = 1;
+			}
+		}
+		else if (cont0 != cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2){
+				datoNuevo.stress_level = 1;
+			}
+			else{
+				datoNuevo.stress_level = 2;
+			}
+		}
+		else if (cont0 == cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2 && contDist1 >= contDist0){
+				datoNuevo.stress_level = 1;
+			}
+			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
+				datoNuevo.stress_level = 2;
+			}
+			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+		}
+	}
+
+	else if(cont1 >= cont0 && cont1 >= cont2){
+		if (cont0 == cont1 && cont1 != cont2){
+			if(contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+			else{
+				datoNuevo.stress_level = 1;
+			}
+		}
+		else if (cont0 != cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2){
+				datoNuevo.stress_level = 1;
+			}
+			else{
+				datoNuevo.stress_level = 2;
+			}
+		}
+		else if (cont0 == cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2 && contDist1 >= contDist0){
+				datoNuevo.stress_level = 1;
+			}
+			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
+				datoNuevo.stress_level = 2;
+			}
+			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+		}
+	}
+
+	else if(cont2 >= cont0 && cont2 >= cont1){
+		if (cont0 == cont1 && cont1 != cont2){
+			if(contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+			else{
+				datoNuevo.stress_level = 1;
+			}
+		}
+		else if (cont0 != cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2){
+				datoNuevo.stress_level = 1;
+			}
+			else{
+				datoNuevo.stress_level = 2;
+			}
+		}
+		else if (cont0 == cont1 && cont1 == cont2){
+			if(contDist1 >= contDist2 && contDist1 >= contDist0){
+				datoNuevo.stress_level = 1;
+			}
+			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
+				datoNuevo.stress_level = 2;
+			}
+			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
+				datoNuevo.stress_level = 0;
+			}
+		}
+	}
+
+
 	printf("El estres correspondiente a los datos introducidos es : %d \n", estresMinimo);
 	printf("La distancia es : %lf \n", distancia);
 }
-
 
