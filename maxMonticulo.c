@@ -87,10 +87,10 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 		
 		posaux = 0;
 		
-		while ((2*posaux+1) <= m->numEl)
+		while ((2*posaux+1) < m->numEl)
 		{
 			
-			if ((2*posaux+2) > m->numEl)
+			if ((2*posaux+2) >= m->numEl)
 			{
 				cambio.distancia = m->array[2*posaux+1].distancia;
 				cambio.stressLevel = m->array[2*posaux+1].stressLevel;
