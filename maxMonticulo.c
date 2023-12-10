@@ -16,7 +16,7 @@ bool esVacio(tipoMaxMonticulo m){
 }
 
 bool estaLleno(tipoMaxMonticulo m){
-	return (m.pos == m.numEl);
+	return (m.pos + 1 == m.numEl);
 }
 
 tipoElementoMaxMonticulo devolverRaiz(tipoMaxMonticulo m){
@@ -35,22 +35,29 @@ void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo elem){
 		
 	}
 	else{
-		if (m->pos == m->numEl){
+		if (m->pos + 1 == m->numEl)
+		{
 			printf("ERROR No se pueden introducir mas elementos\n");
 		}
-		else{
+		else
+		{
+			m->pos = m->pos + 1; //apunta al siguiente hueco
 			posaux = (m->pos);
-			for (posaux ; (-1) ; ((posaux-1) / 2)){//Encontar la posicion hasta la que tiene que subir
+			m->array[m->pos].distancia = elem.distancia;//lleno el siguiente hueco
+			m->array[m->pos].stressLevel = elem.stressLevel;
+			for (posaux ; posaux > (-1) ; ((posaux-1) / 2)){//Encontar la posicion hasta la que tiene que subir
 				
-				if (m->array[posaux].distancia <= (m->array[(posaux-1) / 2].distancia)){
+				if (m->array[posaux].distancia <= (m->array[(posaux-1) / 2].distancia))
+				{//si es mayor se cambia y sino se queda como está
 					posaux = -1;
 				}
-				else{
-					cambio.distancia = m->array[2*posaux+1].distancia;
-					cambio.stressLevel = m->array[2*posaux+1].stressLevel;
+				else
+				{
+					cambio.distancia = m->array[posaux-1) / 2].distancia;
+					cambio.stressLevel = m->array[posaux-1) / 2].stressLevel;
 						
-					m->array[2*posaux+1].distancia = m->array[posaux].distancia;
-					m->array[2*posaux+1].stressLevel = m->array[posaux].stressLevel;
+					m->array[posaux-1) / 2].distancia = m->array[posaux].distancia;
+					m->array[posaux-1) / 2].stressLevel = m->array[posaux].stressLevel;
 						
 					m->array[posaux].distancia = cambio.distancia;
 					m->array[posaux].stressLevel = cambio.stressLevel;
@@ -159,12 +166,3 @@ void cambiarRaiz(tipoMaxMonticulo *m, tipoElementoMaxMonticulo elem){
 		}
 	}
 }
-
-
-
-	
-	
-	
-	
-	
-		
