@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "colaDeDatos.h"
+#include "maxMonticulo.h"
 
 int main()
 {
@@ -23,26 +24,46 @@ int main()
 	tipoMaxMonticulo maxMon;
 
 
-	datoNuevo.anxiety_level = 16;
-	datoNuevo.self_esteem = 12;
-	datoNuevo.mental_health_history = 1;
-	datoNuevo.depression = 15;
-	datoNuevo.headache = 4;
-	datoNuevo.blood_pressure = 3;
-	datoNuevo.sleep_quality = 1;
-	datoNuevo.breathing_problem = 3;
-	datoNuevo.noise_level = 4;
-	datoNuevo.living_conditions = 2;
-	datoNuevo.safety = 2;
-	datoNuevo.basic_needs = 2;
-	datoNuevo.academic_performance = 2;
-	datoNuevo.study_load = 4;
-	datoNuevo.teacher_student_relationship = 1;
-	datoNuevo.future_career_concerns = 4;
-	datoNuevo.social_support = 1;
-	datoNuevo.peer_pressure = 4;
-	datoNuevo.extracurricular_activities = 4;
-	datoNuevo.bullying = 5;
+	printf("Introduce el nivel de ansiedad: ");
+	scanf("%lf", &datoNuevo.anxiety_level);
+	printf("Introduce el nivel de autoestima: ");
+	scanf("%lf", &datoNuevo.self_esteem);
+	printf("Introduce el nivel de salud mental: ");
+	scanf("%lf", &datoNuevo.mental_health_history);
+	printf("Introduce el nivel de depresion: ");
+	scanf("%lf", &datoNuevo.depression);
+	printf("Introduce el nivel de dolor de cabeza: ");
+	scanf("%lf",&datoNuevo.headache);
+	printf("Introduce el nivel de presion arterial: ");
+	scanf("%lf", &datoNuevo.blood_pressure);
+	printf("Introduce el nivel de calidad de sueño: ");
+	scanf("%lf", &datoNuevo.sleep_quality);
+	printf("Introduce el nivel de problemas respiratorios: ");
+	scanf("%lf", &datoNuevo.breathing_problem);
+	printf("Introduce el nivel de ruido: ");
+	scanf("%lf", &datoNuevo.noise_level);
+	printf("Introduce el nivel de condiciones de vida: ");
+	scanf("%lf", &datoNuevo.living_conditions);
+	printf("Introduce el nivel de seguridad: ");
+	scanf("%lf", &datoNuevo.safety);
+	printf("Introduce el nivel de necesidades basicas: ");
+	scanf("%lf", &datoNuevo.basic_needs);
+	printf("Introduce el nivel de rendimiento academico: ");
+	scanf("%lf", &datoNuevo.academic_performance);
+	printf("Introduce el nivel de carga de estudio: ");
+	scanf("%lf", &datoNuevo.study_load);
+	printf("Introduce el nivel de relacion alumno-profesor: ");
+	scanf("%lf", &datoNuevo.teacher_student_relationship);
+	printf("Introduce el nivel de preocupacion por tu futuro: ");
+	scanf("%lf", &datoNuevo.future_career_concerns);
+	printf("Introduce el nivel de apoyo social: ");
+	scanf("%lf", &datoNuevo.social_support);
+	printf("Introduce el nivel de presion social: ");
+	scanf("%lf", &datoNuevo.peer_pressure);
+	printf("Introduce el nivel de actividades extrascolares: ");
+	scanf("%lf", &datoNuevo.extracurricular_activities);
+	printf("Introduce el nivel de bullyng sufrido: ");
+	scanf("%lf", &datoNuevo.bullying);
 	
 	Normalizar(&datoNuevo);//Se nos habia olvidado normalizar el dato nuevo
 
@@ -115,15 +136,15 @@ int main()
     free(tabla);
     fclose(fichero);
 
-	while(!(estaLleno(maxMon)){
+	while(!(estaLleno(maxMon))){
 
 		datos = copiarDatos(cola);
 		desencolar(&cola);
 
 		elem.distancia = CalcularDistancia(datos, datoNuevo);
-		elem.stress_level = datos.stress_level;
+		elem.stressLevel = datos.stress_level;
 
-		insertar(&maxMon, elem);
+		insertarMaxMonticulo(&maxMon, elem);
 	}
 
 	while(!esNulaCola(cola)){
@@ -135,39 +156,30 @@ int main()
 
 		distanciaNueva = CalcularDistancia(datos, datoNuevo);
 
-		if(raiz.distancia > distanciaNueva){
 
-			borrarraiz(&maxMon);
-			elem.distancia = distanciaNueva;
-			elem.stress_level = datos.stress_level;
-
-			insertar(&maxMon, elem);
-		}
-
-		else{
-			continue
-		}
+		
+		cambiarRaiz(&maxMon, elem);
 	}
 
-	while(!(estaLleno(maxMon)){
+	while(!(estaLleno(maxMon))){
 
 		raiz = devolverRaiz(maxMon);
-		borrarraiz(&maxMon);
+		cambiarRaiz(&maxMon, elem);
 
-		if(raiz.stress_level == 0){
+		if(raiz.stressLevel == 0){
 			cont0 += 1;
 			contDist0 += raiz.distancia;
 		}
-		else if(raiz.stress_level == 1){
+		else if(raiz.stressLevel == 1){
 			cont1 += 1;
 			contDist1 += raiz.distancia;
 		}
-		else if (raiz.stress_level == 2{
+		else if (raiz.stressLevel == 2){
 			cont2 += 1;
 			contDist2 += raiz.distancia;
 		}
 		else{
-			printf("Aimer gay");
+			printf("ERROR"); //NO deberia de darse, pero pasa si el stress level da un numero que no sea 0, 1 o 2
 		}
 	}
 
@@ -230,25 +242,24 @@ int main()
 			}
 		}
 	}
-
 	else if(cont2 >= cont0 && cont2 >= cont1){
-		if (cont0 == cont1 && cont1 != cont2){
-			if(contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
-			else{
-				datoNuevo.stress_level = 1;
-			}
-		}
-		else if (cont0 != cont1 && cont1 == cont2){
-			if(contDist1 >= contDist2){
-				datoNuevo.stress_level = 1;
-			}
-			else{
+		if (cont2 == cont1 && cont1 != cont2){
+			if(contDist2 >= contDist1){
 				datoNuevo.stress_level = 2;
 			}
+			else{
+				datoNuevo.stress_level = 1;
+			}
 		}
-		else if (cont0 == cont1 && cont1 == cont2){
+		else if (cont2 != cont1 && cont0 == cont2){
+			if(contDist2 >= contDist0){
+				datoNuevo.stress_level = 2;
+			}
+			else{
+				datoNuevo.stress_level = 0;
+			}
+		}
+		else if (cont2 == cont1 && cont0 == cont2){
 			if(contDist1 >= contDist2 && contDist1 >= contDist0){
 				datoNuevo.stress_level = 1;
 			}
@@ -259,10 +270,7 @@ int main()
 				datoNuevo.stress_level = 0;
 			}
 		}
+
 	}
-
-
-	printf("El estres correspondiente a los datos introducidos es : %d \n", estresMinimo);
-	printf("La distancia es : %lf \n", distancia);
+	printf("\nEl estres correspondiente a los datos introducidos es : %lf ", datoNuevo.stress_level);
 }
-
