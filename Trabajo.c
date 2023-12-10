@@ -60,10 +60,10 @@ int main()
 	}
 	printf("Introduce el nivel de presion arterial(valor entre 1 y 3): ");
 	scanf("%lf", &datoNuevo.blood_pressure);
-	while(datoNuevo.blood_pressure)> 3){
+	while(datoNuevo.blood_pressure > 3){
 		printf("\nERROR, el valor no se encuentra entre los indicados");
 		printf("\nIntroduce el nivel de ansiedad(valor entre 1 y 3): ");
-		scanf("%lf", &datoNuevo.blood_pressure));
+		scanf("%lf", &datoNuevo.blood_pressure);
 	}
 	printf("Introduce el nivel de calidad de sueño(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.sleep_quality);
@@ -158,10 +158,10 @@ int main()
 	}
 	printf("Introduce el nivel de bullyng sufrido(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.bullying);
-	while(datoNuevo.datoNuevo.bullying > 5){
+	while(datoNuevo.bullying > 5){
 		printf("\nERROR, el valor no se encuentra entre los indicados");
 		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
-		scanf("%lf", &datoNuevo.datoNuevo.bullying);
+		scanf("%lf", &datoNuevo.bullying);
 	}
 	
 	Normalizar(&datoNuevo);//Se nos habia olvidado normalizar el dato nuevo
@@ -170,6 +170,13 @@ int main()
 
 	printf("\nIntroduce el numero de elementos que quieres comprobar (N): ");
 	scanf("%d", &numElem);
+	
+	while (numElem > 1100 || numElem <= 0){
+		printf("Error el numero debe estar entre el 1 y el 1100");
+		printf("\nIntroduce el numero de elementos que quieres comprobar (N): ");
+		scanf("%d", &numElem);
+	}
+		
 
 	nuevoMaxMonticulo(&maxMon, numElem);
   

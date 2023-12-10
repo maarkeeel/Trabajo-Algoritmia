@@ -53,11 +53,11 @@ void insertarMaxMonticulo(tipoMaxMonticulo* m, tipoElementoMaxMonticulo elem){
 				}
 				else
 				{
-					cambio.distancia = m->array[posaux-1) / 2].distancia;
-					cambio.stressLevel = m->array[posaux-1) / 2].stressLevel;
+					cambio.distancia = m->array[(posaux-1) / 2].distancia;
+					cambio.stressLevel = m->array[(posaux-1) / 2].stressLevel;
 						
-					m->array[posaux-1) / 2].distancia = m->array[posaux].distancia;
-					m->array[posaux-1) / 2].stressLevel = m->array[posaux].stressLevel;
+					m->array[(posaux-1) / 2].distancia = m->array[posaux].distancia;
+					m->array[(posaux-1) / 2].stressLevel = m->array[posaux].stressLevel;
 						
 					m->array[posaux].distancia = cambio.distancia;
 					m->array[posaux].stressLevel = cambio.stressLevel;
