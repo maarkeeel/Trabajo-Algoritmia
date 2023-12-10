@@ -8,7 +8,7 @@
 
 int main()
 {
-	int n1, n2, indice, estresMinimo, numElem, cont0, cont1, cont2, contDist0, contDist1, contDist2;
+	int n1, n2, indice, estresMinimo, numElem;
 	double distancia, distanciaNueva;
 	FILE *fichero;
 	char c1, c2;
@@ -147,7 +147,8 @@ int main()
 		insertarMaxMonticulo(&maxMon, elem);
 	}
 
-	while(!esNulaCola(cola)){
+	while(!esNulaCola(cola))
+	{
 
 		datos = copiarDatos(cola);
 		desencolar(&cola);
@@ -160,11 +161,16 @@ int main()
 		
 		cambiarRaiz(&maxMon, elem);
 	}
-
-	while(!(estaLleno(maxMon))){
-
-		raiz = devolverRaiz(maxMon);
-		cambiarRaiz(&maxMon, elem);
+	int cont0 = 0;
+	int cont1 = 0;
+	int cont2 = 0;
+	int contDist0 = 0;
+	int contDist1 = 0;
+	int contDist2 = 0;
+	for(int i = 0; i < maxMon.numEl; i = i + 1)
+	{
+		raiz.distancia = maxMon.array[i].distancia;
+		raiz.stressLevel = maxMon.array[i].stressLevel;
 
 		if(raiz.stressLevel == 0){
 			cont0 += 1;
@@ -183,94 +189,61 @@ int main()
 		}
 	}
 
-	if (cont0 >= cont1 && cont0 >= cont2){
-		if (cont0 == cont1 && cont1 != cont2){
-			if(contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
-			else{
-				datoNuevo.stress_level = 1;
-			}
+	int maxContador, Dmax;
+	if(cont0 < cont1)
+	{
+		maxContador = cont1;
+		Dmax = contDist1;
+		datoNuevo.stress_level = 1;
+	}
+	else if(cont0 > cont1)
+	{
+		maxContador = cont0;
+		Dmax = contDist0;
+		datoNuevo.stress_level = 0;
+	}
+	else if(cont0 == cont1)
+	{
+		if (contDist0 < contDist1)
+		{
+			maxContador = cont0;
+			Dmax = contDist0;
+			datoNuevo.stress_level = 0;
 		}
-		else if (cont0 != cont1 && cont1 == cont2){
-			if(contDist1 >= contDist2){
-				datoNuevo.stress_level = 1;
-			}
-			else{
-				datoNuevo.stress_level = 2;
-			}
+		else
+		{
+			maxContador = cont1;
+			Dmax = contDist1;
+			datoNuevo.stress_level = 1;
 		}
-		else if (cont0 == cont1 && cont1 == cont2){
-			if(contDist1 >= contDist2 && contDist1 >= contDist0){
-				datoNuevo.stress_level = 1;
-			}
-			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
-				datoNuevo.stress_level = 2;
-			}
-			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
+	}
+	if(cont2 < maxContador)
+	{
+
+	}
+	else if(cont2 > maxContador)
+	{
+		datoNuevo.stress_level = 2;
+	}
+	else if(cont2 == maxContador)
+	{
+		if (contDist2 < Dmax)
+		{
+			datoNuevo.stress_level = 2;
+		}
+		else
+		{
+
 		}
 	}
 
-	else if(cont1 >= cont0 && cont1 >= cont2){
-		if (cont0 == cont1 && cont1 != cont2){
-			if(contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
-			else{
-				datoNuevo.stress_level = 1;
-			}
-		}
-		else if (cont0 != cont1 && cont1 == cont2){
-			if(contDist1 >= contDist2){
-				datoNuevo.stress_level = 1;
-			}
-			else{
-				datoNuevo.stress_level = 2;
-			}
-		}
-		else if (cont0 == cont1 && cont1 == cont2){
-			if(contDist1 >= contDist2 && contDist1 >= contDist0){
-				datoNuevo.stress_level = 1;
-			}
-			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
-				datoNuevo.stress_level = 2;
-			}
-			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
-		}
-	}
-	else if(cont2 >= cont0 && cont2 >= cont1){
-		if (cont2 == cont1 && cont1 != cont2){
-			if(contDist2 >= contDist1){
-				datoNuevo.stress_level = 2;
-			}
-			else{
-				datoNuevo.stress_level = 1;
-			}
-		}
-		else if (cont2 != cont1 && cont0 == cont2){
-			if(contDist2 >= contDist0){
-				datoNuevo.stress_level = 2;
-			}
-			else{
-				datoNuevo.stress_level = 0;
-			}
-		}
-		else if (cont2 == cont1 && cont0 == cont2){
-			if(contDist1 >= contDist2 && contDist1 >= contDist0){
-				datoNuevo.stress_level = 1;
-			}
-			else if(contDist2 >= contDist1 && contDist2 >= contDist0){
-				datoNuevo.stress_level = 2;
-			}
-			else if(contDist0 >= contDist2 && contDist0 >= contDist1){
-				datoNuevo.stress_level = 0;
-			}
-		}
 
-	}
+
 	printf("\nEl estres correspondiente a los datos introducidos es : %lf ", datoNuevo.stress_level);
+	printf("\nEl nª 0 correspondiente a los datos introducidos es : %d ", cont0);
+	printf("\nEl nª 1 correspondiente a los datos introducidos es : %d ", cont1);
+	printf("\nEl nª 2 correspondiente a los datos introducidos es : %d ", cont2);
+	printf("\nLa suma de distancias correspondiente a los datos introducidos es : %d ", contDist0);
+	printf("\nLa suma de distancias correspondiente a los datos introducidos es : %d ", contDist1);
+	printf("\nLa suma de distancias correspondiente a los datos introducidos es : %d ", contDist2);
 }
