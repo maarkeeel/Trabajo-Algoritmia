@@ -22,48 +22,147 @@ int main()
 	tipoElementoMaxMonticulo elem;
 	tipoElementoMaxMonticulo raiz;
 	tipoMaxMonticulo maxMon;
-
-
+	
 	printf("Introduce el nivel de ansiedad(valor entre 0 y 21): ");
 	scanf("%lf", &datoNuevo.anxiety_level);
+	while(datoNuevo.anxiety_level > 21){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 21): ");
+		scanf("%lf", &datoNuevo.anxiety_level);
+	}
 	printf("Introduce el nivel de autoestima(valor entre 0 y 30): ");
 	scanf("%lf", &datoNuevo.self_esteem);
+	while(datoNuevo.self_esteem > 30){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 30): ");
+		scanf("%lf", &datoNuevo.self_esteem);
+	}
 	printf("Introduce el nivel de salud mental(valor entre 0 y 1): ");
 	scanf("%lf", &datoNuevo.mental_health_history);
+	while(datoNuevo.mental_health_history > 1){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 1): ");
+		scanf("%lf", &datoNuevo.mental_health_history);
+	}
 	printf("Introduce el nivel de depresion(valor entre 0 y 27): ");
 	scanf("%lf", &datoNuevo.depression);
+	while(datoNuevo.depression > 27){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 27): ");
+		scanf("%lf", &datoNuevo.depression);
+	}
 	printf("Introduce el nivel de dolor de cabeza(valor entre 0 y 5): ");
 	scanf("%lf",&datoNuevo.headache);
+	while(datoNuevo.headache > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.headache);
+	}
 	printf("Introduce el nivel de presion arterial(valor entre 1 y 3): ");
 	scanf("%lf", &datoNuevo.blood_pressure);
+	while(datoNuevo.blood_pressure)> 3){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 1 y 3): ");
+		scanf("%lf", &datoNuevo.blood_pressure));
+	}
 	printf("Introduce el nivel de calidad de sueño(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.sleep_quality);
+	while(datoNuevo.sleep_quality > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.sleep_quality);
+	}
 	printf("Introduce el nivel de problemas respiratorios(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.breathing_problem);
+	while(datoNuevo.breathing_problem > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.breathing_problem);
+	}
 	printf("Introduce el nivel de ruido(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.noise_level);
+	while(datoNuevo.noise_level > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.noise_level);
+	}
 	printf("Introduce el nivel de condiciones de vida(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.living_conditions);
+	while(datoNuevo.living_conditions > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.living_conditions);
+	}
 	printf("Introduce el nivel de seguridad(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.safety);
+	while(datoNuevo.safety > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.safety);
+	}
 	printf("Introduce el nivel de necesidades basicas(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.basic_needs);
+	while(datoNuevo.basic_needs > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.basic_needs);
+	}
 	printf("Introduce el nivel de rendimiento academico(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.academic_performance);
+	while(datoNuevo.academic_performance > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.academic_performance);
+	}
 	printf("Introduce el nivel de carga de estudio(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.study_load);
+	while(datoNuevo.study_load > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.study_load);
+	}
 	printf("Introduce el nivel de relacion alumno-profesor(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.teacher_student_relationship);
+	while(datoNuevo.teacher_student_relationship > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.teacher_student_relationship);
+	}
 	printf("Introduce el nivel de preocupacion por tu futuro(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.future_career_concerns);
+	while(datoNuevo.future_career_concerns > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.future_career_concerns);
+	}
 	printf("Introduce el nivel de apoyo social(valor entre 0 y 3): ");
 	scanf("%lf", &datoNuevo.social_support);
+	while(datoNuevo.social_support > 3){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 3): ");
+		scanf("%lf", &datoNuevo.social_support);
+	}
 	printf("Introduce el nivel de presion social(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.peer_pressure);
+	while(datoNuevo.peer_pressure > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.peer_pressure);
+	}
 	printf("Introduce el nivel de actividades extrascolares(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.extracurricular_activities);
+	while(datoNuevo.extracurricular_activities > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.extracurricular_activities);
+	}
 	printf("Introduce el nivel de bullyng sufrido(valor entre 0 y 5): ");
 	scanf("%lf", &datoNuevo.bullying);
+	while(datoNuevo.datoNuevo.bullying > 5){
+		printf("\nERROR, el valor no se encuentra entre los indicados");
+		printf("\nIntroduce el nivel de ansiedad(valor entre 0 y 5): ");
+		scanf("%lf", &datoNuevo.datoNuevo.bullying);
+	}
 	
 	Normalizar(&datoNuevo);//Se nos habia olvidado normalizar el dato nuevo
 
